@@ -1,11 +1,27 @@
-.grid-color {
-    background-color: grey;
-    width: 200px;
-    height: 200px;
-    border: coral 1px solid;
+body{
+    margin: 0;
+    border: 0;
+    text-align: center;
 }
 
-.container {
-    border: coral 1px solid;
-    display: flex;
+.grid {
+    background-color: grey;
 }
+
+.hover {
+    background-color: tomato;
+}
+
+#container {
+    background-color: black;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    width: 700px;
+    height: 700px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 5%;
+    border: black 5px solid;
+}
+

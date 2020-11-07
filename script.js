@@ -1,32 +1,50 @@
 const div = document.createElement("div");
-const containerDiv1 = document.querySelector("#container1");
-const containerDiv2 = document.querySelector("#container2");
-const containerDiv3 = document.querySelector("#container3");
+const containerDiv = document.querySelector("#container");
 
-function createGrid() {
-    for(i = 0; i < 16; i++) {
+function createGrid(e) {
+    const size = e;
+    console.log(size);
+    const createGridSize = size*size;
+    const divSize = 100/size;
+    console.log(divSize);
+
+    for(i = 0; i < createGridSize; i++) {
         const div = document.createElement("div");
-        div.classList.add("grid-color");
-        containerDiv1.appendChild(div);
+        div.classList.add("grid");
+        div.style.width = divSize+"%";
+        div.style.height = divSize+"%";
+        containerDiv.appendChild(div);
     }
 
-    for(i = 0; i < 16; i++) {
-        const div = document.createElement("div");
-        div.classList.add("grid-color");
-        containerDiv2.appendChild(div);
-    }
+    const grids = document.querySelectorAll(`div[class="grid"]`);
 
-    for(i = 0; i < 16; i++) {
-        const div = document.createElement("div");
-        div.classList.add("grid-color");
-        containerDiv3.appendChild(div);
-    }
+    grids.forEach(function (grid) {
+        grid.addEventListener("mouseover", () => {
+            let randomNumberGen = Math.floor(Math.random()*255) + 1
+            const randomNumbersArr = [];
+            for(i = 0; i < 3; i++) {
+                randomNumbersArr.push(randomNumberGen);
+                randomNumberGen = Math.floor(Math.random()*255) + 1
+            }
+
+            let rgbValue = "rgb("+randomNumbersArr.toString()+")";
+            grid.style.backgroundColor = rgbValue;
+        });
+    });
+
 };
 
-createGrid();
 
-// To create next:
-// 1. create 16 container divs with id="container"
-// 2. create variable with array of container divs
-// 3. run for each statement to create 16 divs with class of grid-color
+    
+
+const resetButton = document.querySelector(`button[name="resetButton"]`);
+
+resetButton.addEventListener("click", function reset(){
+    
+    containerDiv.innerHTML = "";
+    const gridSize = prompt("How many squares would you like?");
+    createGrid(gridSize);
+});
+
+
 
